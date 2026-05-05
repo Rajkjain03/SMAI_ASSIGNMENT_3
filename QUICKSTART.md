@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide - Pushup Rep Counter
 
-## ✅ Status: READY TO USE ✓
+##  Status: READY TO USE ✓
 
 Your implementation is **production-ready**. No issues found!
 
@@ -25,7 +25,7 @@ streamlit run app.py
 
 ## 📹 Using the App
 
-### **RECOMMENDED: OpenCV Fallback** ✅
+### **RECOMMENDED: OpenCV Fallback** 
 1. Select **"OpenCV Fallback (recommended)"** in Camera Backend
 2. Click **"▶️ Start OpenCV Camera"**
 3. Position yourself (upper body & elbows visible)
@@ -63,15 +63,15 @@ streamlit run app.py
 
 ## 🧡 Implementation Review
 
-**✅ All Features Working:**
-- ✅ Both camera modes (WebRTC + OpenCV)
-- ✅ Video upload with progress tracking
-- ✅ Real-time angle & rep counting
-- ✅ Smart debouncing (prevents false counts)
-- ✅ Cycle validation (35° min angle delta)
-- ✅ Comprehensive error handling
-- ✅ Professional UI/UX
-- ✅ All dependencies properly pinned
+** All Features Working:**
+-  Both camera modes (WebRTC + OpenCV)
+-  Video upload with progress tracking
+-  Real-time angle & rep counting
+-  Smart debouncing (prevents false counts)
+-  Cycle validation (35° min angle delta)
+-  Comprehensive error handling
+-  Professional UI/UX
+-  All dependencies properly pinned
 
 **See:** `IMPLEMENTATION_REVIEW.md` for full technical details
 
@@ -97,10 +97,10 @@ streamlit run app.py
 ---
 
 ## 🎯 Ready for:
-- ✅ Live demo
-- ✅ Video recording
-- ✅ Faculty viva
-- ✅ Submission
+-  Live demo
+-  Video recording
+-  Faculty viva
+-  Submission
 
 **No issues found. Code is production-ready!** ✓
 | Counting extra reps | Try: Down=100°, Up=140° |

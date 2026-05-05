@@ -188,7 +188,7 @@ with col1:
                         cv2.cvtColor(test_frame, cv2.COLOR_BGR2RGB),
                         channels="RGB",
                         caption="OpenCV camera test frame",
-                        use_column_width=True,
+                        use_container_width=True,
                     )
                 else:
                     st.error(
@@ -295,7 +295,7 @@ with col1:
                     frame_placeholder.image(
                         cv2.cvtColor(result_frame, cv2.COLOR_BGR2RGB),
                         channels="RGB",
-                        use_column_width=True,
+                        use_container_width=True,
                     )
                     time.sleep(0.02)
                     st.rerun()
@@ -374,7 +374,7 @@ with col1:
                         frame_placeholder.image(
                             cv2.cvtColor(result_frame, cv2.COLOR_BGR2RGB),
                             channels="RGB",
-                            use_column_width=True
+                            use_container_width=True
                         )
                         
                         stats_placeholder.markdown(f"""
@@ -394,7 +394,7 @@ with col1:
                 os.unlink(temp_file.name)
                 
                 progress_bar.progress(1.0)
-                st.success(f"✅ Video Processing Complete! Total Reps: **{rep_count}**")
+                st.success(f" Video Processing Complete! Total Reps: **{rep_count}**")
                 
                 # Show angle graph
                 st.subheader("📈 Angle Analysis")

@@ -1,10 +1,8 @@
 # Pushup Rep Counter - Project Report
 
 ## Team Details
-*Please fill in your team details below:*
-- **Name:** [Your Name] | **Roll No:** [Your Roll Number] | **Email:** [Your Email]
+- **Name:** Raj k Jain | **Roll No:** [2025201036] | **Email:** [raj.jain@students.iiit.ac.in]
 - **Name:** [Teammate 2 Name] | **Roll No:** [Teammate 2 Roll Num] | **Email:** [Teammate 2 Email]
-- **Name:** [Teammate 3 Name] | **Roll No:** [Teammate 3 Roll Num] | **Email:** [Teammate 3 Email]
 
 ## GitHub Repository
 **Link:** [Insert your GitHub Repository Link here]
@@ -135,13 +133,13 @@ To prevent false positives, angles are smoothed over 5 frames.
 *(Replace the placeholder texts below with actual images of your app)*
 
 **1. Main Interface & Webcam Mode (Using OpenCV):**
-![Main Interface](path_to_screenshot_1.png)
+![Main Interface](Screenshots/Screenshot%20from%202026-05-05%2014-47-00.png)
 
 **2. Video Upload Mode & Pose Detection Overlay:**
-![Video Processing](path_to_screenshot_2.png)
+![Video Processing](Screenshots/Screenshot%20from%202026-05-05%2014-47-51.png)
 
-**3. Sidebar Threshold Tuning:**
-![Settings & Thresholds](path_to_screenshot_3.png)
+**3. Statistics and Graphs:**
+![Settings & Thresholds](Screenshots/Screenshot%20from%202026-05-05%2014-48-08.png)
 - [ ] Multi-person tracking
 - [ ] Export data as CSV/JSON
 - [ ] Mobile app deployment
@@ -152,11 +150,11 @@ To prevent false positives, angles are smoothed over 5 frames.
 The Pushup Rep Counter successfully automates rep counting with **92-96% accuracy** on standard hardware. It demonstrates the practical application of pose estimation in fitness applications.
 
 ### Key Achievements
-✅ Real-time detection on CPU (30 FPS)  
-✅ Zero training required (pre-trained model)  
-✅ Works across different body types  
-✅ Simple web interface  
-✅ Deployment-ready
+ Real-time detection on CPU (30 FPS)  
+ Zero training required (pre-trained model)  
+ Works across different body types  
+ Simple web interface  
+ Deployment-ready
 
 ---
 
