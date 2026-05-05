@@ -29,7 +29,7 @@ setup(
     ],
     python_requires=">=3.8",
     install_requires=[
-        "streamlit>=1.28.1",
+        "streamlit>=1.42.2",
         "mediapipe>=0.10.5",
         "opencv-python>=4.8.1",
         "numpy>=1.24.3",

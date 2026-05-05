@@ -1,3 +1,5 @@
+import cv2
+import numpy as np
 from typing import Tuple, List
 from collections import deque
 from .pose_detector import PoseDetector, LANDMARKS
@@ -26,6 +28,40 @@ class PushupCounter:
         self.is_down = False  # True when in down position
         self.recent_angles = deque(maxlen=5)  # Smooth angle values
         self.frame_buffer = deque(maxlen=10)  # For debugging
+        self.down_frames = 0
+        self.up_frames = 0
+        self.frames_since_last_rep = 999
+        self.cycle_min_angle = None
+        self.cycle_max_angle = None
+
+        # Debounce and cycle validation to prevent random movement from being counted.
+        self.required_down_frames = 3
+        self.required_up_frames = 3
+        self.min_rep_interval_frames = 8
+        self.min_cycle_angle_delta = 35
+
+    def _compute_arm_angle(self, landmarks, shoulder_idx: int, elbow_idx: int, wrist_idx: int,
+                           visibility_threshold: float = 0.5):
+        """Return elbow angle for one arm when all required landmarks are confidently visible."""
+        if max(shoulder_idx, elbow_idx, wrist_idx) >= len(landmarks):
+            return None
+
+        shoulder = landmarks[shoulder_idx]
+        elbow = landmarks[elbow_idx]
+        wrist = landmarks[wrist_idx]
+
+        if (
+            shoulder[3] < visibility_threshold
+            or elbow[3] < visibility_threshold
+            or wrist[3] < visibility_threshold
+        ):
+            return None
+
+        return self.pose_detector.calculate_angle(
+            (shoulder[0], shoulder[1]),
+            (elbow[0], elbow[1]),
+            (wrist[0], wrist[1]),
+        )
         
     def process_frame(self, frame):
         """
@@ -43,52 +79,70 @@ class PushupCounter:
         if not landmarks:
             return annotated_frame, self.rep_count, 0, 0, 0, "No person detected"
         
-        # Get elbow positions
-        left_shoulder = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['LEFT_SHOULDER']
+        # Compute angles only when arm landmarks are confidently detected.
+        left_angle = self._compute_arm_angle(
+            landmarks,
+            LANDMARKS['LEFT_SHOULDER'],
+            LANDMARKS['LEFT_ELBOW'],
+            LANDMARKS['LEFT_WRIST'],
         )
-        left_elbow = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['LEFT_ELBOW']
+        right_angle = self._compute_arm_angle(
+            landmarks,
+            LANDMARKS['RIGHT_SHOULDER'],
+            LANDMARKS['RIGHT_ELBOW'],
+            LANDMARKS['RIGHT_WRIST'],
         )
-        left_wrist = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['LEFT_WRIST']
-        )
-        
-        right_shoulder = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['RIGHT_SHOULDER']
-        )
-        right_elbow = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['RIGHT_ELBOW']
-        )
-        right_wrist = self.pose_detector.get_landmark_position(
-            landmarks, LANDMARKS['RIGHT_WRIST']
-        )
-        
-        # Calculate elbow angles
-        left_angle = self.pose_detector.calculate_angle(
-            left_shoulder, left_elbow, left_wrist
-        )
-        right_angle = self.pose_detector.calculate_angle(
-            right_shoulder, right_elbow, right_wrist
-        )
-        
-        # Average angle from both arms
-        avg_angle = (left_angle + right_angle) / 2
+
+        valid_angles = [angle for angle in [left_angle, right_angle] if angle is not None]
+        if not valid_angles:
+            return annotated_frame, self.rep_count, 0, 0, 0, "Pose not clear"
+
+        if left_angle is not None and right_angle is not None and abs(left_angle - right_angle) > 45:
+            return annotated_frame, self.rep_count, 0, left_angle, right_angle, "Unstable pose"
+
+        # Average angle from whichever arm(s) are currently visible.
+        avg_angle = sum(valid_angles) / len(valid_angles)
         self.recent_angles.append(avg_angle)
         smoothed_angle = sum(self.recent_angles) / len(self.recent_angles)
-        
-        # Detect state change (down -> up = one rep)
-        if not self.is_down and smoothed_angle < self.angle_threshold_down:
-            # Entering down position
-            self.is_down = True
-            status = "Down"
-        elif self.is_down and smoothed_angle > self.angle_threshold_up:
-            # Exiting down position -> completing a rep
-            self.is_down = False
-            self.rep_count += 1
-            status = "Rep completed!"
+        self.frames_since_last_rep += 1
+
+        if smoothed_angle < self.angle_threshold_down:
+            self.down_frames += 1
         else:
-            status = "Down" if self.is_down else "Up"
+            self.down_frames = 0
+
+        if smoothed_angle > self.angle_threshold_up:
+            self.up_frames += 1
+        else:
+            self.up_frames = 0
+        
+        # Detect state change with temporal debounce and cycle validation.
+        if not self.is_down and self.down_frames >= self.required_down_frames:
+            self.is_down = True
+            self.cycle_min_angle = smoothed_angle
+            self.cycle_max_angle = smoothed_angle
+            status = "Down"
+        else:
+            if self.is_down:
+                self.cycle_min_angle = min(self.cycle_min_angle, smoothed_angle)
+                self.cycle_max_angle = max(self.cycle_max_angle, smoothed_angle)
+
+                cycle_delta = self.cycle_max_angle - self.cycle_min_angle
+                if (
+                    self.up_frames >= self.required_up_frames
+                    and self.frames_since_last_rep >= self.min_rep_interval_frames
+                    and cycle_delta >= self.min_cycle_angle_delta
+                ):
+                    self.is_down = False
+                    self.rep_count += 1
+                    self.frames_since_last_rep = 0
+                    self.cycle_min_angle = None
+                    self.cycle_max_angle = None
+                    status = "Rep completed!"
+                else:
+                    status = "Down"
+            else:
+                status = "Up"
         
         # Draw information on frame
         height, width = self.pose_detector.get_frame_dimensions(annotated_frame)
@@ -107,7 +161,9 @@ class PushupCounter:
                    (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 1, status_color, 2)
         
         # Draw individual angles for debugging
-        cv2.putText(annotated_frame, f"Left: {left_angle:.1f}° Right: {right_angle:.1f}°",
+        left_display = left_angle if left_angle is not None else 0
+        right_display = right_angle if right_angle is not None else 0
+        cv2.putText(annotated_frame, f"Left: {left_display:.1f}° Right: {right_display:.1f}°",
                    (10, height - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 1)
         
         return annotated_frame, self.rep_count, smoothed_angle, left_angle, right_angle, status
@@ -118,15 +174,18 @@ class PushupCounter:
         self.is_down = False
         self.recent_angles.clear()
         self.frame_buffer.clear()
+        self.down_frames = 0
+        self.up_frames = 0
+        self.frames_since_last_rep = 999
+        self.cycle_min_angle = None
+        self.cycle_max_angle = None
     
     def get_stats(self) -> dict:
         """Get current statistics."""
         return {
             'rep_count': self.rep_count,
             'is_down': self.is_down,
-            'current_angle': sum(self.recent_angles) / len(self.recent_angles) if self.recent_angles else 0
+            'current_angle': sum(self.recent_angles) / len(self.recent_angles) if self.recent_angles else 0,
+            'down_frames': self.down_frames,
+            'up_frames': self.up_frames,
         }
-
-
-# Import cv2 here for drawing functions
-import cv2

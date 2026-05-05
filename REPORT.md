@@ -1,5 +1,17 @@
 # Pushup Rep Counter - Project Report
 
+## Team Details
+*Please fill in your team details below:*
+- **Name:** [Your Name] | **Roll No:** [Your Roll Number] | **Email:** [Your Email]
+- **Name:** [Teammate 2 Name] | **Roll No:** [Teammate 2 Roll Num] | **Email:** [Teammate 2 Email]
+- **Name:** [Teammate 3 Name] | **Roll No:** [Teammate 3 Roll Num] | **Email:** [Teammate 3 Email]
+
+## GitHub Repository
+**Link:** [Insert your GitHub Repository Link here]
+*(Make sure the repository is public or accessible to the TAs/Professors)*
+
+---
+
 ## Executive Summary
 
 This project implements a real-time pushup rep counter using MediaPipe pose detection and Streamlit. It automatically counts pushup repetitions by analyzing elbow angles from video input.
@@ -118,6 +130,18 @@ To prevent false positives, angles are smoothed over 5 frames.
 
 - [ ] Real-time form feedback (detect incorrect posture)
 - [ ] Support for multiple pushup variations
+
+## 7. App Screenshots
+*(Replace the placeholder texts below with actual images of your app)*
+
+**1. Main Interface & Webcam Mode (Using OpenCV):**
+![Main Interface](path_to_screenshot_1.png)
+
+**2. Video Upload Mode & Pose Detection Overlay:**
+![Video Processing](path_to_screenshot_2.png)
+
+**3. Sidebar Threshold Tuning:**
+![Settings & Thresholds](path_to_screenshot_3.png)
 - [ ] Multi-person tracking
 - [ ] Export data as CSV/JSON
 - [ ] Mobile app deployment
