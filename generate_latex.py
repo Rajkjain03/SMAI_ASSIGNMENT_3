@@ -129,7 +129,7 @@ Human pose estimation (HPE) is a foundational task in computer vision aimed at l
 For this project, we employ \textbf{MediaPipe BlazePose}, an exceptionally lightweight topological framework developed by Google. Unlike OpenPose, which produces high-latency predictions requiring discrete GPUs, BlazePose is optimized for real-time mobile and CPU deployments.
 \begin{itemize}
     \item \textbf{Detector and Tracker Pipeline}: BlazePose relies on an initial face-detector derived bounding box crop, followed by a pose-tracker network that predicts 33 3D landmarks defined by the COCO topology plus additional hand/foot points.
-    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the `model_complexity=1` variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
+    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the \texttt{model\_complexity=1} variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
 \end{itemize}
 
 \subsection{Computer-Aided Biomechanics}
