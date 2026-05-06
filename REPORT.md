@@ -6,7 +6,7 @@
 
 ## GitHub Repository and Demo
 **Repository Link:** [Insert your GitHub Repository Link here]
-**Video Demo:** [https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link](https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link)
+**Video Demo:** [Click here to view the Video Demo](https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link)
 *(Make sure the repository is public or accessible to the TAs/Professors)*
 
 ---
