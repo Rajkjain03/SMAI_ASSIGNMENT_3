@@ -97,7 +97,7 @@ The convergence of artificial intelligence and biomechanical analysis has paved 
 \tableofcontents
 \newpage
 \listoffigures
-\newpage
+\vspace{2cm}
 \listoftables
 \newpage
 
