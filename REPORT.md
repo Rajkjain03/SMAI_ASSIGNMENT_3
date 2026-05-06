@@ -4,8 +4,9 @@
 - **Name:** Raj k Jain | **Roll No:** [2025201036] | **Email:** [raj.jain@students.iiit.ac.in]
 - **Name:** [Teammate 2 Name] | **Roll No:** [Teammate 2 Roll Num] | **Email:** [Teammate 2 Email]
 
-## GitHub Repository
-**Link:** [Insert your GitHub Repository Link here]
+## GitHub Repository and Demo
+**Repository Link:** [Insert your GitHub Repository Link here]
+**Video Demo:** [https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link](https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link)
 *(Make sure the repository is public or accessible to the TAs/Professors)*
 
 ---

@@ -55,7 +55,7 @@
     linkcolor=primary,
     filecolor=magenta,      
     urlcolor=primary,
-    pdftitle={Pushup Rep Counter - Project Report},
+    pdftitle={Pushup Rep Counter - Comprehensive Project Report},
 }
 
 % Section formatting
@@ -63,7 +63,7 @@
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
-\title{\vspace{-2cm}\textbf{Pushup Rep Counter}\\ \Large Project Report \\ \large (SMAI Assignment 3 - T6.3)}
+\title{\vspace{-2cm}\textbf{Pushup Rep Counter}\\ \Large Comprehensive Project Report \\ \large (SMAI Assignment 3 - T6.3)}
 
 \author{
     \normalsize
@@ -81,7 +81,8 @@
 
 \vspace{-2em}
 \begin{center}
-    \textbf{GitHub Repository:} \url{https://github.com/Rajkjain03/SMAI_ASSIGNMENT_3}
+    \textbf{GitHub Repository:} \url{https://github.com/Rajkjain03/SMAI_ASSIGNMENT_3} \\
+    \textbf{Video Demo:} \url{https://drive.google.com/file/d/1M9_2MTBr4o8WjC-c7NJ0JRzK5-ET2cui/view?usp=drive_link}
 \end{center}
 \vspace{-0.5em}
 
@@ -94,7 +95,7 @@ The convergence of artificial intelligence and biomechanical analysis has paved 
 \tableofcontents
 \newpage
 \listoffigures
-\vspace{1em}
+\newpage
 \listoftables
 \newpage
 
@@ -126,7 +127,7 @@ Human pose estimation (HPE) is a foundational task in computer vision aimed at l
 For this project, we employ \textbf{MediaPipe BlazePose}, an exceptionally lightweight topological framework developed by Google. Unlike OpenPose, which produces high-latency predictions requiring discrete GPUs, BlazePose is optimized for real-time mobile and CPU deployments.
 \begin{itemize}
     \item \textbf{Detector and Tracker Pipeline}: BlazePose relies on an initial face-detector derived bounding box crop, followed by a pose-tracker network that predicts 33 3D landmarks defined by the COCO topology plus additional hand/foot points.
-    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the \texttt{model\_complexity=1} variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
+    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the `model_complexity=1` variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
 \end{itemize}
 
 \subsection{Computer-Aided Biomechanics}
@@ -230,7 +231,7 @@ As per the Tier 1 T6.3 assignment variant parameters, this project fundamentally
 \subsection{Testing Datasets}
 To evaluate the zero-shot efficiency of the Streamlit rep counter, validation tests were executed using unannotated standard user recordings:
 \begin{itemize}
-    \item \textbf{Video Data:} Multiple \texttt{.mp4} samples curated from YouTube fitness coaching clips demonstrating variations in environmental settings, camera angles, and frame frequencies (30 FPS vs 60 FPS).
+    \item \textbf{Video Data:} Multiple `.mp4` samples curated from YouTube fitness coaching clips demonstrating variations in environmental settings, camera angles, and frame frequencies (30 FPS vs 60 FPS).
     \item \textbf{Live Streams:} Direct verification leveraging local Linux system Webcams (V4L2 interface) routed via OpenCV fallback to simulate edge deployments in real-world personal gym settings.
 \end{itemize}
 
