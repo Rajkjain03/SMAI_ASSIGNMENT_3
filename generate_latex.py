@@ -1,4 +1,6 @@
-\documentclass[12pt, a4paper]{article}
+import os
+
+latex_content = r"""\documentclass[12pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -94,7 +96,7 @@ The convergence of artificial intelligence and biomechanical analysis has paved 
 \tableofcontents
 \newpage
 \listoffigures
-\vspace{1em}
+\newpage
 \listoftables
 \newpage
 
@@ -126,7 +128,7 @@ Human pose estimation (HPE) is a foundational task in computer vision aimed at l
 For this project, we employ \textbf{MediaPipe BlazePose}, an exceptionally lightweight topological framework developed by Google. Unlike OpenPose, which produces high-latency predictions requiring discrete GPUs, BlazePose is optimized for real-time mobile and CPU deployments.
 \begin{itemize}
     \item \textbf{Detector and Tracker Pipeline}: BlazePose relies on an initial face-detector derived bounding box crop, followed by a pose-tracker network that predicts 33 3D landmarks defined by the COCO topology plus additional hand/foot points.
-    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the \texttt{model\_complexity=1} variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
+    \item \textbf{Sub-millisecond Inference}: The model utilizes a heatmap-based architecture intertwined with direct coordinate regression, skipping demanding post-processing steps. Our implementation utilizes the `model_complexity=1` variant, balancing detection fidelity (33.5M parameters) with strict latency budgets.
 \end{itemize}
 
 \subsection{Computer-Aided Biomechanics}
@@ -230,7 +232,7 @@ As per the Tier 1 T6.3 assignment variant parameters, this project fundamentally
 \subsection{Testing Datasets}
 To evaluate the zero-shot efficiency of the Streamlit rep counter, validation tests were executed using unannotated standard user recordings:
 \begin{itemize}
-    \item \textbf{Video Data:} Multiple \texttt{.mp4} samples curated from YouTube fitness coaching clips demonstrating variations in environmental settings, camera angles, and frame frequencies (30 FPS vs 60 FPS).
+    \item \textbf{Video Data:} Multiple `.mp4` samples curated from YouTube fitness coaching clips demonstrating variations in environmental settings, camera angles, and frame frequencies (30 FPS vs 60 FPS).
     \item \textbf{Live Streams:} Direct verification leveraging local Linux system Webcams (V4L2 interface) routed via OpenCV fallback to simulate edge deployments in real-world personal gym settings.
 \end{itemize}
 
@@ -326,3 +328,9 @@ Bazarevsky, V. et al. (2020). \textit{BlazePose: On-device Real-time Body Pose t
 \end{thebibliography}
 
 \end{document}
+"""
+
+with open("/home/rajkjain/Downloads/SMAI_ASSIGNMENT_3/report.tex", "w") as f:
+    f.write(latex_content)
+
+print(f"Generated comprehensive report.tex ({len(latex_content)} characters)")

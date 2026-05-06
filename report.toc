@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Research Motivation}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Problem Statement}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Objectives and Scope}{4}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Background and Literature Review}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Evolution of Pose Estimation}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}MediaPipe and BlazePose Architecture}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Computer-Aided Biomechanics}{5}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Mathematical Formulation}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Spatial Coordinate Extraction}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Deriving Joint Angles via Law of Cosines}{6}{subsection.3.2}%
+\contentsline {section}{\numberline {4}System Architecture and Implementation}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Tech Stack Overview}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Module Breakdown}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}State Machine Logic and Temporal Debouncing}{7}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Data Specification}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Zero-Shot Application Design}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Testing Datasets}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Experimental Results and Evaluation}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Testing Parameters}{9}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Accuracy Analysis}{9}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Application Showcase}{9}{section.7}%
+\contentsline {section}{\numberline {8}Limitations and Constraints}{11}{section.8}%
+\contentsline {section}{\numberline {9}Future Enhancements}{11}{section.9}%
+\contentsline {section}{\numberline {10}Conclusion}{12}{section.10}%
+\contentsline {section}{\numberline {11}Acknowledgements}{12}{section.11}%
