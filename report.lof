@@ -1,3 +1,0 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Main Interface: Live processing feed generating real-time predictions via the robust OpenCV backend. Contains live tracking overlays.}}{10}{figure.caption.2}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Video Upload Mode: Historical parsing of user-supplied Media. Features real-time active angle feedback (Pose: Down) and integrated COCO skeleton rendering linking joints actively.}}{10}{figure.caption.3}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Configuration and Analysis: Demonstrating the adjustable threshold sliders in the interactive sidebar layout enabling multi-body compatibility.}}{11}{figure.caption.4}%
